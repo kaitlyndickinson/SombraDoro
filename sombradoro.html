@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="sombradoro.js"></script>
+
+  <div class="container">
+      <button id="skull" type="button" onclick="updateDuration()">
+        💀
+      </button>
+    <div id="countdown">60:00</div>
+
+    <div class="buttons">
+      <button type="button" onclick="playPauseCountdown()">
+        <div class="imageContainer">
+          <img id="playPause" src="playButton.png">
+        </div>
+      </button>
+      <button type="button" onclick="restartCountdown()">
+        <div class="imageContainer" id="resetButton">
+          <img src="refreshButton.png">
+        </div>
+      </button>
+    </div>
+
+    <audio id="endAudio">
+      <source src="boop.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</body>
+</html>
