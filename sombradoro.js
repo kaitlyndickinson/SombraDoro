@@ -5,7 +5,7 @@ const MIN_60 = SEC_IN_MIN * 60;
 
 /* VARIABLES */
 let interval;
-let isPaused = true; // tracks when the user hits the pause button
+let isPaused = true; 
 let countdownWasStarted = false;
 let pomodoroDuration = MIN_60; // Default value
 let timeLeftInSeconds = 0;
@@ -13,26 +13,20 @@ let timeLeftInSeconds = 0;
 /* FUNCTIONS */
 // Changes the countdown duration between 30 and 60 minutes whenever the skull icon is clicked
 function updateDuration() {
-  // If the button is already at 60 minutes
   if(pomodoroDuration == MIN_60 ) {
-    // Change to 30 minutes
     pomodoroDuration = MIN_30;
-    // Else, switch to 60 minutes
   } else {
     pomodoroDuration = MIN_60;
   }
-  // Update the timer to display correct countdown
   timeLeftInSeconds = pomodoroDuration
   updateTimeString()
 }
 
 // Called when the button has been pressed
 function playPauseCountdown() {
-  // Track that the user has pressed the button
   isPaused = !isPaused
   updatePlayPauseButton();
 
-  // If the countdown has not yet started
   if(!countdownWasStarted) {
     // This function could be called after initiating the timer,
     // so we need to differentiate when its start vs pause vs resume
@@ -41,11 +35,10 @@ function playPauseCountdown() {
   }
   countdownWasStarted = true
 
-  // If the button is paused
   if(isPaused) {
-    stopCountdown() // Stop the countdown
+    stopCountdown() 
   } else {
-    // Else, update the interval every one second
+    // Update the interval every one second
     interval = setInterval(updateCountdown, 1000);
   }
 }
@@ -56,7 +49,6 @@ function restartCountdown() {
   stopCountdown()
   resetCountdown()
 
-  // Mark pause as true, display the correct button, and display the correct countdown.
   isPaused = true
   updatePlayPauseButton()
   updateTimeString()
@@ -68,7 +60,7 @@ function updateCountdown() {
     return
   }
 
-  timeLeftInSeconds--; // Decrease by one second
+  timeLeftInSeconds--; 
 
   updateTimeString();
 
@@ -100,27 +92,23 @@ function updatePlayPauseButton() {
   let playPauseImageSrc;
 
   if(isPaused) {
-    playPauseImageSrc = "playButton.png" // Display play button
+    playPauseImageSrc = "playButton.png"
   } else {
-    playPauseImageSrc = "pauseButton.png" // Display pause button
+    playPauseImageSrc = "pauseButton.png"
   }
-  document.getElementById("playPause").src = playPauseImageSrc; // Send to screen
+  document.getElementById("playPause").src = playPauseImageSrc;
 }
 
 // Updates the time string to display the correct minutes and seconds
 function updateTimeString() {
-    // Minutes = seconds remaining / 60
   let minutes = Math.floor(timeLeftInSeconds / SEC_IN_MIN); 
   let seconds = timeLeftInSeconds % SEC_IN_MIN;
 
-  // Making the text look nicer for digits less than 10
   if(seconds < 10) {
     secondsOutput = "0" + seconds
   } else {
     secondsOutput = seconds
   }
-
-  // Output the result in an element with id="demo"
   document.getElementById("countdown").innerHTML = minutes + ":" + secondsOutput;
 }
 
